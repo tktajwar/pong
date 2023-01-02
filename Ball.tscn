@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/Ball.gd" type="Script" id=1]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="SphereMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.984314, 0.168627, 0.0862745, 1 )
+ao_enabled = true
+ao_light_affect = 0.0
+ao_on_uv2 = false
+ao_texture_channel = 0
+
+[sub_resource type="SphereShape" id=4]
+
+[sub_resource type="SphereShape" id=5]
+
+[node name="Ball" type="RigidBody"]
+collision_layer = 2147483650
+collision_mask = 5
+physics_material_override = SubResource( 1 )
+contacts_reported = 4
+contact_monitor = true
+can_sleep = false
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 4 )
+
+[node name="Timer_Start_Rolling" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+autostart = true
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 5 )
+[connection signal="body_entered" from="." to="." method="_on_Ball_body_entered"]
+[connection signal="timeout" from="Timer_Start_Rolling" to="." method="_on_Timer_Start_Rolling_timeout"]
+[connection signal="area_exited" from="Area" to="." method="_on_Area_area_exited"]
