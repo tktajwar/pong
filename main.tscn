@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Ball.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player_A.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/Score_Board.gd" type="Script" id=3]
 [ext_resource path="res://assets/font.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scripts/Message_Board.gd" type="Script" id=5]
+[ext_resource path="res://scripts/main.gd" type="Script" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 8, 0.1, 18 )
@@ -51,6 +52,14 @@ extents = Vector3( 0.5, 1, 4 )
 extents = Vector3( 10, 2, 18 )
 
 [node name="Root" type="Spatial"]
+script = ExtResource( 6 )
+
+[node name="Timer_Get_Data" type="Timer" parent="."]
+autostart = true
+
+[node name="Timer_Save_Data" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
 
 [node name="Floor" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
@@ -217,5 +226,7 @@ __meta__ = {
 [node name="Message_Timer" type="Timer" parent="Message_Board"]
 wait_time = 2.0
 one_shot = true
+[connection signal="timeout" from="Timer_Get_Data" to="." method="_on_Timer_Get_Data_timeout"]
+[connection signal="timeout" from="Timer_Save_Data" to="." method="_on_Timer_Save_Data_timeout"]
 [connection signal="foul" from="Ball" to="Score_Board" method="_on_Ball_foul"]
 [connection signal="goal" from="Ball" to="Score_Board" method="_on_Ball_goal"]

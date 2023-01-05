@@ -1,3 +1,6 @@
 # backup and temporary files
 *~
 \#*#
+
+# game data save
+data*.json
