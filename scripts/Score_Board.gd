@@ -11,10 +11,6 @@ func _ready():
 	update_score()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 
 func update_score():
 	text = "Player A Score: " + String(score_A) + "    Player B Score: " + String(score_B)
