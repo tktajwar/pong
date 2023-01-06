@@ -16,9 +16,11 @@ func _process(_delta):
 	var direction = Vector3.ZERO
 	
 	if Input.is_action_pressed("move_up"):
-		direction.x += 1
+		if(global_transform.origin.x < 6):
+			direction.x += 1
 	if Input.is_action_pressed("move_down"):
-		direction.x -= 1
+		if(global_transform.origin.x > -6):
+			direction.x -= 1
 	
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
