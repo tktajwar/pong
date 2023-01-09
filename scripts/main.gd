@@ -55,7 +55,6 @@ func _on_Timer_Get_Data_timeout():
 		"B_V_Z": ball.linear_velocity.z,
 	}
 	
-	print(new_data)
 	add_data(new_data)
 
 
