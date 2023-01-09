@@ -138,6 +138,10 @@ shape = SubResource( 8 )
 mesh = SubResource( 9 )
 material/0 = SubResource( 10 )
 
+[node name="Check_Ball" type="Timer" parent="Player_B"]
+wait_time = 0.25
+autostart = true
+
 [node name="Border1" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, -9 )
 collision_layer = 4
@@ -230,5 +234,6 @@ wait_time = 2.0
 one_shot = true
 [connection signal="timeout" from="Timer_Get_Data" to="." method="_on_Timer_Get_Data_timeout"]
 [connection signal="timeout" from="Timer_Save_Data" to="." method="_on_Timer_Save_Data_timeout"]
+[connection signal="timeout" from="Player_B/Check_Ball" to="Player_B" method="_on_Check_Ball_timeout"]
 [connection signal="foul" from="Ball" to="Score_Board" method="_on_Ball_foul"]
 [connection signal="goal" from="Ball" to="Score_Board" method="_on_Ball_goal"]
