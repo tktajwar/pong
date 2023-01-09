@@ -30,7 +30,12 @@ func reset_ball():
 
 func _on_Timer_Start_Rolling_timeout():
 	var direction = Vector3()
-	direction.z = -speed
+	
+	var dir_op = rand_range(0,1) > 0.5
+	direction.z = speed
+	if dir_op:
+		direction.z = -direction.z
+		
 	direction.x = rand_range(-15,15)
 	add_central_force(direction*force)
 
