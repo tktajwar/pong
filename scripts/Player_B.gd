@@ -37,4 +37,3 @@ func baddie():
 
 func _on_Check_Ball_timeout():
 	diff = ball.global_transform.origin.x - global_transform.origin.x
-	print(diff)
